@@ -1,5 +1,5 @@
 # Pokedex Web App
-3rd Midterm Exam
+#### 3rd Midterm Exam
 ### Celia Lucía Castañeda Arizaga
 
 Credit:
