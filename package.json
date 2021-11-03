@@ -1,0 +1,27 @@
+{
+  "name": "3rdmidtermlucy",
+  "version": "1.0.0",
+  "description": "Pokedex",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/888Lucy888/Pokedex.git"
+  },
+  "keywords": [
+    "Pokedex",
+    "Pokemon"
+  ],
+  "author": "Lucy CA",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/888Lucy888/Pokedex/issues"
+  },
+  "homepage": "https://github.com/888Lucy888/Pokedex#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "node": "^17.0.1"
+  }
+}
