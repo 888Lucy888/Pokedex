@@ -1,8 +1,8 @@
 body {
   font-family: "Press Start 2P", cursive;
-}
-
-p {
+  background-image: url(images/pokedex.png);
+  background-size: 20%;
+  background-blend-mode: hard-light;
   color: aliceblue;
 }
 
@@ -10,4 +10,20 @@ p {
   background-color: #2836b4;
   color: #ffda05;
   font-size: large;
+}
+
+.bg {
+  background-color: black;
+}
+
+.txt {
+  font-size: small;
+}
+
+.sml {
+  font-size: smaller;
+}
+
+.bgtxt {
+  font-size: medium;
 }
