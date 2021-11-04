@@ -1,3 +1,13 @@
 body {
   font-family: "Press Start 2P", cursive;
 }
+
+p {
+  color: aliceblue;
+}
+
+.myBtn {
+  background-color: #2836b4;
+  color: #ffda05;
+  font-size: large;
+}
