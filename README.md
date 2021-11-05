@@ -3,5 +3,6 @@
 ### Celia Lucía Castañeda Arizaga
 
 Credit:
+- [PokeAPI](https://pokeapi.co/docs/v2)
 - [Pinpng](https://www.pinpng.com/) (Pokedex Image)
 - [Bulbapedia](https://bulbapedia.bulbagarden.net/w/index.php?title=File:Pok%C3%A9dex_logo.png&printable=yes) (Pokedex Logo)
