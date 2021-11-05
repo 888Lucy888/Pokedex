@@ -38,27 +38,42 @@
       </div>
       <div class="row my-5">
         <div class="col col-md text-center mb-4 mx-5">
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Pokemon's Name">
-            <div class="input-group-append">
-              <button class="btn myBtn bottom-left m-2" type="submit">Search</button>
+            <form action="/search" method="post">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" name="searchName" placeholder="Pokemon's Name">
+              <div class="input-group-append">
+                <button class="btn myBtn bottom-left m-2" type="submit">Search</button>
+              </div>
             </div>
+          </form>
           </div>
         </div>
-      </div>
-      <div class="row my-5">
-        <div class="col col-md text-center m-auto">
-          <p>Charizard </p>
+        <div class="row my-5">
+          <div class="col col-md text-center m-auto">
+              <p name="currentName">Welcome Trainer</p>
+          </div>
         </div>
-      </div>
-      <div class="row my-5">
+        <div class="row my-5">
+          <div class="col col-md text-center m-auto">
+            <% if (currName) { %>
+              <p name="currentName"><%= currName %></p>
+            <% } %>
+          </div>
+        </div>
+        <div class="row my-5">
         <div class="col col-md text-center m-auto container">
           <img class="img-fluid m-auto" src="/images/pokedex.png" style="width:70%;"/>
           <div class="bottom-left m-5">
-            <button class="btn myBtn m-3">View Info</button>
+            <form action="/info" method="post">
+              <button class="btn myBtn m-3">View Info</button>
+            </form>
             <br>
-            <button class="btn myBtn m-2"><</button>
-            <button class="btn myBtn m-2">></button>
+            <form class="btn myBtn m-2" action="/prev" method="post">
+              <button class="btn myBtn"><</button>
+            </form>
+            <form class="btn myBtn m-2" action="/next" method="post">
+              <button class="btn myBtn">></button>
+            </form>
           </div>
         </div>
       </div>
