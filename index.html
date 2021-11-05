@@ -50,7 +50,7 @@
         </div>
         <div class="row my-5">
           <div class="col col-md text-center m-auto">
-              <p name="currentName">Welcome Trainer</p>
+              <p name="currentName"><%=msg%></p>
           </div>
         </div>
         <div class="row my-5">
@@ -65,7 +65,9 @@
           <img class="img-fluid m-auto" src="/images/pokedex.png" style="width:70%;"/>
           <div class="bottom-left m-5">
             <form action="/info" method="post">
-              <button class="btn myBtn m-3">View Info</button>
+              <% if (currID !== 0) { %>
+                <button class="btn myBtn m-3">View Info</button>
+              <% } %>
             </form>
             <br>
             <form class="btn myBtn m-2" action="/prev" method="post">

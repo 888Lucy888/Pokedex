@@ -1,53 +1,95 @@
 const express = require("express");
-const https = require("https");
-const bodyParser = require("body-parser");
-const { get } = require("http");
-const { response } = require("express");
+const Pokedex = require("pokedex-promise-v2");
+var P = new Pokedex();
 const app = express();
 app.use(express.static("public"));
 app.use(express.json());
 app.engine("html", require("ejs").renderFile);
 app.set("view engine", "html");
 app.use(express.urlencoded({ extended:true }));
-//app.set('views', __dirname);
 
-const url = "https://pokeapi.co/api/v2/pokemon/";
-const currentPokeID = 1;
-const currentPokeUrl = url + "1/";
+let currentPokeID = 1;
+let currentPokemon = "";
 
 app.get("/",(req,res) => {
-    https.get(currentPokeUrl, (response) => {
-        console.log(response);
+    P.getPokemonByName(currentPokeID)
+    .then(function(response) {
+      currentPokemon = response.name;
+      currentPokeID = response.id;
+      res.render(__dirname+"/index.html", { currName: "Viewing: " +currentPokemon, msg: "Welcome Trainer", currID: currentPokeID});
+    })
+    .catch(function(error) {
+        currentPokemon = "Not Found";
+        currentPokeID = 0;
+        res.render(__dirname+"/index.html", { currName: currentPokemon, msg: "Did you spell it right?",currID: currentPokeID});
+
     });
-    res.render(__dirname+"/index.html", { currName: "Current Pokémon "+currentPokeID});
-
-    res.sendFile(__dirname + "/index.html");
-});
-
-app.get("/search",(req,res) => {
-    res.sendFile(__dirname + "/index.html");
 });
 
 app.post("/search",(req,res) => {
-    const searchName = req.body.searchName;
-    const currName = req.body.currName;
-    res.render(__dirname+"/index.html", { currName: "Searching for "+searchName });
+    const currentSearch = req.body.searchName;
+    P.getPokemonByName(currentSearch.toLowerCase())
+    .then(function(response) {
+        currentPokeID = response.id;
+        res.redirect("/");
+    })
+    .catch(function(error) {
+        currentPokeID = 0;
+        res.redirect("/");
+    });
 });
 
 app.post("/prev",(req,res) => {
-    
+    currentPokeID=currentPokeID-1;
+    if(currentPokeID==0){
+        currentPokeID=898;
+    }
+    res.redirect("/");
 });
 
 app.post("/next",(req,res) => {
-    
+    currentPokeID=currentPokeID+1;
+    if (currentPokeID==899){
+        currentPokeID=1;
+    }
+    console.log(currentPokeID);
+    res.redirect("/");
+});
+
+app.post("/prevInfo",(req,res) => {
+    currentPokeID=currentPokeID-1;
+    if(currentPokeID==0){
+        currentPokeID=898;
+    }
+    res.redirect("/info");
+});
+
+app.post("/nextInfo",(req,res) => {
+    currentPokeID=currentPokeID+1;
+    if (currentPokeID==899){
+        currentPokeID=1;
+    }
+    res.redirect("/info");
 });
 
 
 app.post("/back",(req,res) => {
+    res.redirect("/");
 });
 
 app.post("/info",(req,res) => {
-    res.sendFile(__dirname + "/info.html");
+    P.getPokemonByName(currentPokeID)
+    .then(function(response) {
+      currentPokemon = response.name;
+      currentPokeID = response.id;
+      res.render(__dirname+"/info.html", { currName: "Viewing: " +currentPokemon, msg: "Welcome Trainer", currID: currentPokeID});
+    })
+    .catch(function(error) {
+        currentPokemon = "Not Found";
+        currentPokeID = 0;
+        res.render(__dirname+"/info.html", { currName: currentPokemon, msg: "Did you spell it right?",currID: currentPokeID});
+
+    });
 });
 
 app.listen(3000, () => {
