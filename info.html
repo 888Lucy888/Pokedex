@@ -41,18 +41,18 @@
             <div class="card text-center m-auto bg" style="width: 50%">
                 <img class="card-img-top" src=<%=img%>>
                 <div class="card-body">
-                  <h6 class="card-title my-3">Pokédex Entry</h6>
+                  <h5 class="card-title mb-3">Pokédex Entry</h5>
                 </div>
                 <ul class="list-group sml list-group-flush my-3">
-                  <p class="text-center m-2">TYPE</p>
+                  <p class="text-center bgtxt m-2">TYPE</p>
                   <%for(const t in types){%>
                     <li class="list-group-item <%=types[t]%>"><%=types[t].toUpperCase()%></li>
                   <%}%>
-                  <p class="text-center m-2 mt-5">EXP</p>
+                  <p class="text-center m-2 mt-5 bgtxt">BASE EXP</p>
                   <li class="list-group-item"><%=exp%></li>
-                  <p class="text-center m-2">WEIGHT</p>
+                  <p class="text-center m-2 bgtxt">WEIGHT</p>
                   <li class="list-group-item"><%=weight%></li>
-                  <p class="text-center m-2">HEIGHT</p>
+                  <p class="text-center m-2 bgtxt">HEIGHT</p>
                   <li class="list-group-item"><%=height%></li>
                   <br>
                   <br>
