@@ -28,75 +28,67 @@
     <div class="container m-auto p-4 bg">
       <div class="row my-5">
         <div class="col col-md text-center m-auto">
-          <img class="img-fluid" src="/images/Logo.png"/>
+          <img class="img-fluid" src="images/Logo.png"/>
         </div>
       </div>
       <div class="row my-5">
         <div class="col col-md text-center m-auto">
-          <h4>Name </h4>
+          <h4><%=n.charAt(0).toUpperCase() + n.slice(1);%></h4>
         </div>
       </div>
       <div class="row my-3">
         <div class="col col-md text-center m-auto container">
             <div class="card text-center m-auto bg" style="width: 50%">
-                <img class="card-img-top" src="/images/pokedex.png">
+                <img class="card-img-top" src=<%=img%>>
                 <div class="card-body">
-                  <h6 class="card-title my-3">Description</h6>
-                  <p class="card-text sml">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <h6 class="card-title my-3">Pokédex Entry</h6>
                 </div>
                 <ul class="list-group sml list-group-flush my-3">
                   <p class="text-center m-2">TYPE</p>
-                  <li class="list-group-item"><%=curr.type%></li>
-                  <p class="text-center m-2">EXP</p>
-                  <li class="list-group-item"><%=curr.exp%></li>
+                  <%for(const t in types){%>
+                    <li class="list-group-item <%=types[t]%>"><%=types[t].toUpperCase()%></li>
+                  <%}%>
+                  <p class="text-center m-2 mt-5">EXP</p>
+                  <li class="list-group-item"><%=exp%></li>
                   <p class="text-center m-2">WEIGHT</p>
-                  <li class="list-group-item"><%=curr.weight%></li>
+                  <li class="list-group-item"><%=weight%></li>
                   <p class="text-center m-2">HEIGHT</p>
-                  <li class="list-group-item"><%=curr.height%></li>
+                  <li class="list-group-item"><%=height%></li>
                   <br>
                   <br>
                   <p class="text-center my-3 bgtxt">MOVES</p>
-                  <table class="table table-dark text-center mx-auto">
-                    <thead>
-                      <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Power</th>
-                        <th scope="col">Accuracy</th>
-                        <th scope="col">Type</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">Pound</th>
-                        <td>40</td>
-                        <td>100</td>
-                        <td>NORMAL</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Pound</th>
-                        <td>40</td>
-                        <td>100</td>
-                        <td>NORMAL</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Pound</th>
-                        <td>40</td>
-                        <td>100</td>
-                        <td>NORMAL</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <%if(moves.length!==0){%>
+                    <div class="s">
+                      <table class="table table-dark text-center mx-auto">
+                        <tbody>
+                          <%for(const m in moves){%>
+                            <tr>
+                              <th scope="row"><%=moves[m].charAt(0).toUpperCase() + moves[m].slice(1);%></th>
+                            </tr>
+                          <%}%>
+                        </tbody>
+                      </table>
+                    </div>
+                  <%}else{%>
+                    <h7 class="my-2">Not in the data base yet :(</h7>
+                  <%}%>
                   <p class="text-center mt-5 bgtxt">ABILITIES</p>
-                  <li class="list-group-item">13</li>
-                  <li class="list-group-item">12</li>
-                  <li class="list-group-item">123</li>
+                  <%for(const a in abil){%>
+                    <li class="list-group-item txt"><%=abil[a].charAt(0).toUpperCase() + abil[a].slice(1);%></li>
+                  <%}%>
                 </ul>
             </div>
           <div class="bottom-left my-5">
-            <button class="btn myBtn m-2"><</button>
-            <button class="btn myBtn m-2">></button>
+            <form class="btn myBtn m-3" action="/prevInfo" method="post">
+              <button class="btn myBtn"><</button>
+            </form>
+            <form class="btn myBtn m-3" action="/nextInfo" method="post">
+              <button class="btn myBtn">></button>
+            </form>
             <br>
-            <button class="btn myBtn m-3">Go Back</button>
+            <form class="btn myBtn m-3" action="/back" method="post">
+              <button class="btn myBtn">Go Back</button>
+            </form>
           </div>
         </div>
       </div>

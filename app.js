@@ -22,7 +22,6 @@ app.get("/",(req,res) => {
         currentPokemon = "Not Found";
         currentPokeID = 0;
         res.render(__dirname+"/index.html", { currName: currentPokemon, msg: "Did you spell it right?",currID: currentPokeID});
-
     });
 });
 
@@ -77,18 +76,63 @@ app.post("/back",(req,res) => {
     res.redirect("/");
 });
 
+app.get("/info",(req,res) => {
+    P.getPokemonByName(currentPokeID)
+    .then(function(response) {
+      n = response.name;
+      exp = response.base_experience;
+      weight = response.weight;
+      height = response.height;
+      img = response.sprites.front_default;
+      types = response.types;
+      typesArray = [];
+      for (const t in types){
+        typesArray.push(types[t].type.name)
+      }
+      abil = response.abilities;
+      abilArray = [];
+      for (const a in abil){
+        abilArray.push(abil[a].ability.name)
+      }
+      move = response.moves;
+      moveArray = [];
+      for (const m in move){
+        moveArray.push(move[m].move.name)
+      }
+      res.render(__dirname+"/info.html", {n:n, exp:exp, weight:weight, height:height, img:img, types:typesArray, abil:abilArray, moves:moveArray});
+    })
+    .catch(function(error) {
+        console.log("Error: ", error);
+    });
+});
+
 app.post("/info",(req,res) => {
     P.getPokemonByName(currentPokeID)
     .then(function(response) {
-      currentPokemon = response.name;
-      currentPokeID = response.id;
-      res.render(__dirname+"/info.html", { currName: "Viewing: " +currentPokemon, msg: "Welcome Trainer", currID: currentPokeID});
+      n = response.name;
+      exp = response.base_experience;
+      weight = response.weight;
+      height = response.height;
+      img = response.sprites.front_default;
+      types = response.types;
+      typesArray = [];
+      for (const t in types){
+        typesArray.push(types[t].type.name)
+      }
+      abil = response.abilities;
+      abilArray = [];
+      for (const a in abil){
+        abilArray.push(abil[a].ability.name)
+      }
+      move = response.moves;
+      moveArray = [];
+      for (const m in move){
+        moveArray.push(move[m].move.name)
+      }
+      res.render(__dirname+"/info.html", {n:n, exp:exp, weight:weight, height:height, img:img, types:typesArray, abil:abilArray, moves:moveArray});
     })
     .catch(function(error) {
-        currentPokemon = "Not Found";
-        currentPokeID = 0;
-        res.render(__dirname+"/info.html", { currName: currentPokemon, msg: "Did you spell it right?",currID: currentPokeID});
-
+        console.log("Error: ", error);
     });
 });
 
