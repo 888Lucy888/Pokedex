@@ -51,7 +51,7 @@ app.post("/next",(req,res) => {
     if (currentPokeID==899){
         currentPokeID=1;
     }
-    console.log(currentPokeID);
+    //console.log(currentPokeID);
     res.redirect("/");
 });
 
