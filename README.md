@@ -2,7 +2,7 @@
 #### 3rd Midterm Exam
 ### Celia Lucía Castañeda Arizaga
 
------ Heroku Plan Discontinued ----- App Link Broken
+----- Heroku Plan Discontinued ----- Deployed App Link Broken :(
 
 Credit:
 - [PokeAPI](https://pokeapi.co/docs/v2) (API)
